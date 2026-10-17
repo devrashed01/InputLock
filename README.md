@@ -17,12 +17,30 @@ the **native macOS Touch ID / password dialog** appears. Only you can unlock it.
 
 ## Install
 
-### Download
-1. Download `InputLock.zip` from the [latest release](../../releases/latest) and unzip it.
-2. Move `InputLock.app` to `Applications`.
-3. The app isn't notarized, so the first time, **right-click ▸ Open ▸ Open**.
-4. Grant access in **System Settings ▸ Privacy & Security** for both **Accessibility** and **Input Monitoring**, then open it again.
-5. Optional, to start at login: **System Settings ▸ General ▸ Login Items ▸ +**, then pick InputLock.
+```bash
+curl -fsSL https://raw.githubusercontent.com/devrashed01/InputLock/main/install.sh | bash
+```
+
+This downloads the latest release into `~/Applications`, adds a login item and opens the permission settings.
+One-time step: enable **InputLock** in **System Settings ▸ Privacy & Security ▸ Accessibility** and **Input Monitoring**, then run:
+
+```bash
+launchctl kickstart -k gui/$(id -u)/com.local.inputlock
+```
+
+Uninstall:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/devrashed01/InputLock/main/install.sh | bash -s uninstall
+```
+
+<details><summary>Manual download</summary>
+
+1. Download `InputLock.zip` from the [latest release](../../releases/latest), unzip it and move `InputLock.app` to Applications.
+2. The app isn't notarized, so the first time, **right-click ▸ Open ▸ Open**.
+3. Grant **Accessibility** and **Input Monitoring** as described above, then open it again.
+
+</details>
 
 ### Build from source
 Requires macOS 13+ and the Xcode Command Line Tools (`xcode-select --install`).
